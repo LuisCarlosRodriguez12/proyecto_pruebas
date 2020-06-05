@@ -20,3 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource("retos","RetoController");
+
+Route::resource('aliados_estrategicos','Aliados_estrategicosController')
+    ->names('aliados_estrategicos')
+    ->parameters(['aliados_estrategicos' => 'lis_aliados']);
+
