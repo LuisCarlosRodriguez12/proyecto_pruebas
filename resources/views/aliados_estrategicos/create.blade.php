@@ -13,7 +13,7 @@
                     </ul>
                 @endif
                 <div class="card-header">Registrar Aliado</div>
-                <form action="{{ route('aliados_estrategico.store') }}" method="POST">
+                <form action="{{ route('aliados_estrategicos.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label>Nombre</label>
