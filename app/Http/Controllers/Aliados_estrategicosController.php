@@ -39,21 +39,28 @@ class Aliados_estrategicosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $fields = request()->validate([
+        /* $fields = request()->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
             'logo' => 'required',
         ]);
-        AliadosEstrategicos::create($fields); 
+        AliadosEstrategicos::create($fields); */ 
 
-        /* AliadosEstrategicos::create([
+        /*  AliadosEstrategicos::create([
             'nombre' => request('nombre'),
             'descripcion' => request('descripcion'),
             'logo' => request('logo'), 
     
-        ]);*/
+        ]); */
+        $lis_aliados = new AliadosEstrategicos();
+        $lis_aliados->nombre = $request->input('nombre');
+        $lis_aliados->descripcion = $request->input('descripcion');
+        $lis_aliados->logo = $request->input('logo');
+        $lis_aliados->save();
+        
+
         return redirect()->route('aliados_estrategicos.index');
     }
 
