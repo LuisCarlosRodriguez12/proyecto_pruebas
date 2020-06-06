@@ -26,8 +26,8 @@
                             <tr>
                                 <td>{{ $values ['id'] }}</td>
                                 <td><a href="{{route('aliados_estrategicos.show',$values)}}">{{ $values['nombre'] }}</a></td>
-                                <td>{{ $values['descripcion'] }}</td>
-                                <td>{{ $values['logo'] }}</td>
+                                <td>{{$values['descripcion']}}</td>
+                                <td><img src="images/{{ $values['logo'] }}" width="30" height="20" ></td>
             
                             </tr>
                         @endforeach()

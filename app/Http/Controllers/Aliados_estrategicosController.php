@@ -54,13 +54,19 @@ class Aliados_estrategicosController extends Controller
             'logo' => request('logo'), 
     
         ]); */
+
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+
         $lis_aliados = new AliadosEstrategicos();
         $lis_aliados->nombre = $request->input('nombre');
         $lis_aliados->descripcion = $request->input('descripcion');
-        $lis_aliados->logo = $request->input('logo');
+        $lis_aliados->logo = $name;
         $lis_aliados->save();
         
-
         return redirect()->route('aliados_estrategicos.index');
     }
 
