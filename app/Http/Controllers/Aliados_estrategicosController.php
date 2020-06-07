@@ -104,13 +104,22 @@ class Aliados_estrategicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AliadosEstrategicos  $lis_aliados)
+    public function update(Request $request, AliadosEstrategicos  $lis_aliados)
     {
-        $lis_aliados->update([
+        /* $lis_aliados->update([
             'nombre' => request('nombre'),
             'descripcion' => request('descripcion'),
             'logo' => request('logo'),
-        ]);
+        ]); */
+
+        $lis_aliados->fill($request->except('logo'));
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $name = time().$file->getClientOriginalName();
+            $lis_aliados->logo = $name;
+            $file->move(public_path().'/images/',$name);
+        }
+        $lis_aliados->save();
 
         return redirect()->route('aliados_estrategicos.index', $lis_aliados);
     }
